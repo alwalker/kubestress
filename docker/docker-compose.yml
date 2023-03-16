@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    stress:
+        image: alw/kubecpu
+        restart: always
+        volumes:
+            - ${PWD}/src/stress.conf:/etc/kubescale/stress.conf
+    mem:
+        image: alw/kubemem
+        restart: always
+        volumes:
+            - ${PWD}/src/mem.conf:/etc/kubescale/mem.conf

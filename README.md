@@ -1,0 +1,1 @@
+A simple deployment to test a Kubernetes HPA.

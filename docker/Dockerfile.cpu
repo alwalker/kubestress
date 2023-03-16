@@ -1,0 +1,9 @@
+FROM registry.fedoraproject.org/fedora-minimal
+
+WORKDIR /app
+
+RUN microdnf install -y stress
+
+COPY src/cpu.sh .
+
+CMD ["bash", "cpu.sh"]

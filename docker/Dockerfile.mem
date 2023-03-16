@@ -1,0 +1,7 @@
+FROM busybox
+
+WORKDIR /app
+
+COPY src/mem.sh .
+
+CMD ["ash", "mem.sh"]

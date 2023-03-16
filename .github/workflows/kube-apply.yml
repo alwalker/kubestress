@@ -1,0 +1,25 @@
+name: Deploy To AKS
+on:
+  push:
+    branches:
+    - main
+  paths:
+    - 'kubernetes/*.yaml'
+    - 'kubernetes/*.yml'
+    - '.github/workflows/kube-apply.yml'
+jobs:
+  build:
+    runs-on: [self-hosted]
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v2
+    - name: Get Kubernetes Context
+      uses: azure/aks-set-context@v1
+      with:
+          creds: '${{ secrets.AZURE_CREDENTIALS }}'
+          resource-group: ${{ env.RESOURCE_GROUP }}
+          cluster-name: ${{ env.AKS_CLUSTER_NAME }}
+      id: login
+    - name: Run Kubectl Apply
+      run: |
+          kubectl apply -n alw -f kubernetes/

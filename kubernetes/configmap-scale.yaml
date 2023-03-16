@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scale-config
+data:
+  stress.conf: |
+    1
+  mem.conf: |
+    export MAX_RANGE=1000
+    export SIZE_MOD=100000
